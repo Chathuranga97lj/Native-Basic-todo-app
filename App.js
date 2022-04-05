@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 import React, {useState} from 'react';
 // Scroll view and flatlist is same thing
 //Flatlist is slef closing tag
 // using flat list jason id should be string but default thoes are numbers
 // use keyExtractor props to convert it inside Flatlist tag
 // flatlist has coloums props to separate coloums
+//TouchableOpacitiy give touch actions
 
 export default function App() {
 
@@ -72,6 +73,12 @@ export default function App() {
     }]
   )
 
+  const pressHandler = (id) => {
+    const selectedItem = (todos.filter(todo => todo.id === id))[0]
+    alert(selectedItem.title)
+  }  
+
+
   return (
     <View style={styles.container}>
     {/* <ScrollView> 
@@ -89,7 +96,9 @@ export default function App() {
       keyExtractor={(item) => item.id.toString()}
       data = {todos}
       renderItem = {({item}) => (
-        <Text style={styles.todoStyle}> {item.title} </Text>
+        <TouchableOpacity onPress={() => pressHandler(item.id)}>
+          <Text style={styles.todoStyle}> {item.title} </Text>
+        </TouchableOpacity>
       )}
     
     />

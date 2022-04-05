@@ -1,6 +1,10 @@
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
 import React, {useState} from 'react';
-
+// Scroll view and flatlist is same thing
+//Flatlist is slef closing tag
+// using flat list jason id should be string but default thoes are numbers
+// use keyExtractor props to convert it inside Flatlist tag
+// flatlist has coloums props to separate coloums
 
 export default function App() {
 
@@ -70,7 +74,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-    <ScrollView> 
+    {/* <ScrollView> 
       {todos.map(todo => {
         return(
           <View key={todo.id} style={styles.todoStyle}>
@@ -79,7 +83,17 @@ export default function App() {
         )  
       })
       }
-    </ScrollView>  
+    </ScrollView>   */}
+
+    <FlatList
+      keyExtractor={(item) => item.id.toString()}
+      data = {todos}
+      renderItem = {({item}) => (
+        <Text style={styles.todoStyle}> {item.title} </Text>
+      )}
+    
+    />
+
     </View>
   );
 }
@@ -92,10 +106,10 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
   },
   todoStyle: {
-    margin: 30,
+    margin: 20,
     backgroundColor: 'deeppink',
     color: 'white',
-    fontSize: 30,
-    padding: 30
+    fontSize: 20,
+    padding: 10
   }
 });

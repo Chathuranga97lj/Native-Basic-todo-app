@@ -1,7 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import React, {useState} from 'react';
-import { color } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+
 
 export default function App() {
 
@@ -71,6 +70,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+    <ScrollView> 
       {todos.map(todo => {
         return(
           <View key={todo.id} style={styles.todoStyle}>
@@ -79,6 +79,7 @@ export default function App() {
         )  
       })
       }
+    </ScrollView>  
     </View>
   );
 }
